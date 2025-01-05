@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./styles/App.css";
 import "./styles/button.css";
 import Layout from "./components/Layout";
-import Game from "./pages/Game";
+import Game from "./pages/Main";
 import Paytable from "./pages/Paytable";
 
 function App() {
