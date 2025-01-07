@@ -1,27 +1,42 @@
 import { useState } from "react";
 import "./styles/App.css";
 import "./styles/button.css";
+import { payTableList } from "./assets/paytablelist.js";
 import Layout from "./components/Layout";
-import Game from "./pages/Main";
-import Paytable from "./pages/Paytable";
+import Main from "./pages/Main";
+import PaytablePage from "./pages/PaytablePage.jsx";
 
 function App() {
-  const [pageDisplay, setPageDisplay] = useState("game");
+	const [pageDisplay, setPageDisplay] = useState("game");
+	const [payTableID, setPayTableID] = useState(0);
 
-  return (
-    <>
-      <div>
-        <Layout>{"game" === pageDisplay ? <Game /> : <Paytable />}</Layout>
-      </div>
-      <button
-        onClick={() =>
-          setPageDisplay((prev) => ("game" === prev ? "paytable" : "game"))
-        }
-      >
-        {"game" === pageDisplay ? "Paytable" : "Game"}
-      </button>
-    </>
-  );
+	const curPayTable = payTableList[payTableID];
+
+	/**
+	 * STATE
+	 * pageDisplay
+	 * Paytable
+	 *
+	 */
+
+	return (
+		<div>
+			<Layout>
+				{"game" === pageDisplay ? (
+					<Main
+						showPayTables={() => setPageDisplay("paytable")}
+						curPayTable={curPayTable}
+					/>
+				) : (
+					<PaytablePage
+						showGame={() => setPageDisplay("game")}
+						setPayTable={setPayTableID}
+						payTableID={payTableID}
+					/>
+				)}
+			</Layout>
+		</div>
+	);
 }
 
 export default App;

@@ -1,9 +1,9 @@
 const Footer = () => {
-  return (
-    <div>
-      <p>This is the footer</p>
-    </div>
-  );
+	return (
+		<div>
+			<center>written and coded by Ron Boutilier</center>
+		</div>
+	);
 };
 
 export default Footer;

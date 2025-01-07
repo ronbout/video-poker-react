@@ -2,10 +2,10 @@ import BetAndDeal from "../components/BetAndDeal";
 import Game from "../components/Game";
 import Money from "../components/Money";
 
-const Main = () => {
+const Main = ({ showPayTables }) => {
 	return (
 		<main id="game-container">
-			<Money />
+			<Money showPayTables={showPayTables} />
 			<Game />
 			<BetAndDeal />
 		</main>
