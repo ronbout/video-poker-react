@@ -1,8 +1,13 @@
 const Footer = () => {
 	return (
-		<div>
-			<center>written and coded by Ron Boutilier</center>
-		</div>
+		<footer>
+			<p id="footer-sig">
+				written and coded by&nbsp;
+				<a href="http://ronboutilier.com" target="_blank">
+					Ron Boutilier
+				</a>
+			</p>
+		</footer>
 	);
 };
 

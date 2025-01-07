@@ -1,7 +1,8 @@
+import { useState } from "react";
 import { payTableList } from "../assets/paytablelist";
 import "../styles/paytable.css";
 
-const PaytablePage = ({ showGame, setPayTable, payTableID }) => {
+const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 	// console.log(payTableList);
 	// for (const paytable of payTableList) {
 	// 	console.log(paytable.getId());
@@ -9,13 +10,44 @@ const PaytablePage = ({ showGame, setPayTable, payTableID }) => {
 	// }
 	// console.log(payTableList[payTableID].getDispTable());
 
+	const [curPayTableID, setCurPayTableID] = useState(payTableID);
+
+	const origPayTableID = payTableID;
+
 	const handleSelectPaytable = () => {
-		console.log("select paytable");
+		setPayTableID(curPayTableID);
 		showGame();
 	};
 
-	const renderPayAmounts = () => {
-		const payAmountList = payTableList[payTableID].getDispTable();
+	const handleChangePaytable = (payID) => {
+		setCurPayTableID(payID);
+		console.log(payID);
+	};
+
+	const handleCancelPaytable = () => {
+		setPayTableID(origPayTableID);
+		showGame();
+	};
+
+	const renderPayTableNames = () => {
+		return payTableList.map((paytable) => (
+			<h3
+				className={
+					paytable.getId() === curPayTableID
+						? "paytable-selected"
+						: "paytable-item"
+				}
+				id={`pay-${paytable.getId() + 1}`}
+				key={paytable.getId()}
+				onClick={() => handleChangePaytable(paytable.getId())}
+			>
+				{paytable.getDesc()}
+			</h3>
+		));
+	};
+
+	const renderPayTableAmounts = () => {
+		const payAmountList = payTableList[curPayTableID].getDispTable();
 		const payAmountArray = Object.keys(payAmountList);
 		console.log(payAmountArray);
 		return payAmountArray.map((payType) => (
@@ -29,87 +61,19 @@ const PaytablePage = ({ showGame, setPayTable, payTableID }) => {
 	return (
 		<div id="paytable-page">
 			<div className="paytables-container">
-				<div className="paytable-list">
-					{payTableList.map((paytable) => (
-						<h3
-							className={
-								paytable.getId() === payTableID
-									? "paytable-selected"
-									: "paytable-item"
-							}
-							id={`pay-${paytable.getId() + 1}`}
-							key={paytable.getId()}
-						>
-							{paytable.getDesc()}
-						</h3>
-					))}
-					{/*
-					<h3 className="paytable-selected" data-pay="0" id="pay-1">
-						Jacks or Better
-					</h3>
-					<h3 className="paytable-item" data-pay="1" id="pay-2">
-						Bonus Poker
-					</h3>
-					<h3 className="paytable-item" data-pay="2" id="pay-3">
-						Double Bonus Poker
-					</h3>
-					<h3 className="paytable-item" data-pay="3" id="pay-4">
-						Aces Bonus Poker
-					</h3>
-					<h3 className="paytable-item" data-pay="4" id="pay-5">
-						Triple Bonus Poker
-					</h3>
-					*/}
-				</div>
+				<div className="paytable-list">{renderPayTableNames()}</div>
 				<div className="paydesc">
-					<table className="paytable">
+					<h2 style={{ textAlign: "center" }}>
+						<span>{payTableList[curPayTableID].getDesc()} Payouts</span>
+					</h2>
+					<table className="paytable" style={{ paddingTop: "10px" }}>
 						<thead>
 							<tr>
 								<th className="hand">Hand</th>
 								<th>Pays</th>
 							</tr>
 						</thead>
-						<tbody>
-							{renderPayAmounts()}
-							{/*
-							<tr>
-								<td className="paytable-name">ROYAL FLUSH</td>
-								<td className="paytable-value">800</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">STRAIGHT FLUSH</td>
-								<td className="paytable-value">50</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">FOUR OF A KIND</td>
-								<td className="paytable-value">25</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">FULL HOUSE</td>
-								<td className="paytable-value">9</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">FLUSH</td>
-								<td className="paytable-value">6</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">STRAIGHT</td>
-								<td className="paytable-value">4</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">THREE OF A KIND</td>
-								<td className="paytable-value">3</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">TWO PAIR</td>
-								<td className="paytable-value">2</td>
-							</tr>
-							<tr>
-								<td className="paytable-name">JACKS OR BETTER</td>
-								<td className="paytable-value">1</td>
-							</tr>
-							*/}
-						</tbody>
+						<tbody>{renderPayTableAmounts()}</tbody>
 					</table>
 				</div>
 			</div>
@@ -121,7 +85,11 @@ const PaytablePage = ({ showGame, setPayTable, payTableID }) => {
 				>
 					Select
 				</button>
-				<button id="pay-cancel" className="btn btn-cancel" onClick={showGame}>
+				<button
+					id="pay-cancel"
+					className="btn btn-cancel"
+					onClick={handleCancelPaytable}
+				>
 					Cancel
 				</button>
 			</div>
