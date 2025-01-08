@@ -15,7 +15,7 @@ function App() {
 	/**
 	 * STATE
 	 * pageDisplay
-	 * Paytable
+	 * Paytable ID
 	 *
 	 */
 
