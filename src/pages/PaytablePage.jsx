@@ -1,18 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { payTableList } from "../assets/paytablelist";
 import "../styles/paytable.css";
 
 const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
-	// console.log(payTableList);
-	// for (const paytable of payTableList) {
-	// 	console.log(paytable.getId());
-	// 	console.log(payTableID);
-	// }
-	// console.log(payTableList[payTableID].getDispTable());
+	const origPayTableID = useRef();
+	useEffect(() => {
+		if (!origPayTableID.current && origPayTableID.current !== 0) {
+			origPayTableID.current = payTableID;
+			// console.log("tst: ", origPayTableID.current);
+		}
+	}, [payTableID]);
 
 	const [curPayTableID, setCurPayTableID] = useState(payTableID);
-
-	const origPayTableID = payTableID;
 
 	const handleSelectPaytable = () => {
 		setPayTableID(curPayTableID);
@@ -21,11 +20,13 @@ const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 
 	const handleChangePaytable = (payID) => {
 		setCurPayTableID(payID);
-		console.log(payID);
+		setPayTableID(payID);
+		// console.log(payID);
 	};
 
 	const handleCancelPaytable = () => {
-		setPayTableID(origPayTableID);
+		// console.log("orig: " + origPayTableID.current);
+		setPayTableID(origPayTableID.current);
 		showGame();
 	};
 
@@ -49,7 +50,7 @@ const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 	const renderPayTableAmounts = () => {
 		const payAmountList = payTableList[curPayTableID].getDispTable();
 		const payAmountArray = Object.keys(payAmountList);
-		console.log(payAmountArray);
+		// console.log(payAmountArray);
 		return payAmountArray.map((payType) => (
 			<tr key={payType}>
 				<td className="paytable-name">{payType}</td>
