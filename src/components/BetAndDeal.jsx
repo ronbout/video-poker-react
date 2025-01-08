@@ -1,11 +1,11 @@
 import BetSection from "./BetSection";
 import DealSection from "./DealSection";
 
-const BetAndDeal = () => {
+const BetAndDeal = ({ setBet, gameMode }) => {
 	return (
 		<div id="bet-deal-container" className="flex">
-			<BetSection />
-			<DealSection />
+			<BetSection setBet={setBet} />
+			<DealSection gameMode={gameMode} />
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
 import BetButton from "./BetButton";
 
-const BetSection = () => {
+const BetSection = ({ setBet }) => {
 	return (
 		<div id="bet-container" className="flex">
 			<div id="bet-amt" className="flex">

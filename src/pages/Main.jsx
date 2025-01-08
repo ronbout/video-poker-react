@@ -8,7 +8,7 @@ import { useState } from "react";
 const Main = ({ showPayTables }) => {
 	const [bank, setBank] = useState(constants.STARTING_BANK);
 	const [bet, setBet] = useState(constants.START_BET);
-	const [gameMode, setGameMode] = useState(constants.DEAL);
+	const [gameMode, setGameMode] = useState(constants.DRAW);
 	const [hand, setHand] = useState([0, 1, 2, 3, 4]);
 	const [holdCards, setHoldCards] = useState([0, 0, 0, 0, 0]);
 
@@ -28,7 +28,7 @@ const Main = ({ showPayTables }) => {
 		<main id="game-container">
 			<Money showPayTables={showPayTables} />
 			<Game hand={hand} />
-			<BetAndDeal />
+			<BetAndDeal setBet={setBet} gameMode={gameMode} />
 		</main>
 	);
 };

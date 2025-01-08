@@ -163,10 +163,6 @@ img.card {
   border-style: none;
 }
 
-#draw-btn {
-  display: none;
-}
-
 #odds-container {
   justify-content: center;
   align-items: center;
