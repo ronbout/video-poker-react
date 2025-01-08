@@ -28,7 +28,7 @@ const Main = ({ showPayTables }) => {
 		<main id="game-container">
 			<Money showPayTables={showPayTables} />
 			<Game hand={hand} />
-			<BetAndDeal setBet={setBet} gameMode={gameMode} />
+			<BetAndDeal bet={bet} setBet={setBet} gameMode={gameMode} />
 		</main>
 	);
 };

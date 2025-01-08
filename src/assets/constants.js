@@ -3,6 +3,7 @@ export const DECK_SIZE = 52;
 export const HAND_SIZE = 5;
 export const STARTING_BANK = 1000;
 export const START_BET = 5;
+export const MAX_BET = 20; // 100 for real, just 20 for testing
 export const DEAL = 0;
 export const DRAW = 1;
 

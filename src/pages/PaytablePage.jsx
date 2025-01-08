@@ -1,15 +1,22 @@
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import { payTableList } from "../assets/paytablelist";
 import "../styles/paytable.css";
 
 const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
-	const origPayTableID = useRef();
-	useEffect(() => {
-		if (!origPayTableID.current && origPayTableID.current !== 0) {
-			origPayTableID.current = payTableID;
-			// console.log("tst: ", origPayTableID.current);
-		}
-	}, [payTableID]);
+	/**
+	 * going to undo the orig table ID code as that permitted the header
+	 * to be changed without the paytable being selected.  This makes it
+	 * impossible for the user to know their current paytable, which could
+	 * be useful.  It's was mostly just a test of useRef and useEffect combining
+	 * to store original values.
+	 */
+	// const origPayTableID = useRef();
+	// useEffect(() => {
+	// 	if (!origPayTableID.current && origPayTableID.current !== 0) {
+	// 		origPayTableID.current = payTableID;
+	// 		// console.log("tst: ", origPayTableID.current);
+	// 	}
+	// }, [payTableID]);
 
 	const [curPayTableID, setCurPayTableID] = useState(payTableID);
 
@@ -20,13 +27,13 @@ const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 
 	const handleChangePaytable = (payID) => {
 		setCurPayTableID(payID);
-		setPayTableID(payID);
+		// setPayTableID(payID);
 		// console.log(payID);
 	};
 
 	const handleCancelPaytable = () => {
 		// console.log("orig: " + origPayTableID.current);
-		setPayTableID(origPayTableID.current);
+		// setPayTableID(origPayTableID.current);
 		showGame();
 	};
 
