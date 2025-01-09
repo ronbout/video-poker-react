@@ -1,11 +1,19 @@
+import * as constants from "../assets/constants";
 import { Deck } from "../assets/Deck";
 
-const CardDisplay = ({ card, index }) => {
+const CardDisplay = ({ gameMode, card, index, holdCards, setHoldCards }) => {
+	const handleCardClick = () => {
+		if (gameMode === constants.DEAL) return;
+		const newHold = [...holdCards];
+		newHold[index] = !newHold[index];
+		setHoldCards(newHold);
+	};
+
 	return (
 		<div className="card-img-container" key={index}>
 			<div className="hold-container">
 				<div className="hold" id={`hold${index + 1}`}>
-					&nbsp;
+					{holdCards[index] ? "HOLD" : "\u00A0"}
 				</div>
 			</div>
 			<img
@@ -15,6 +23,7 @@ const CardDisplay = ({ card, index }) => {
 				src={Deck.getCardImage(card)}
 				alt={Deck.getCardDesc(card)}
 				title={Deck.getCardDesc(card)}
+				onClick={() => handleCardClick(index)}
 			/>
 		</div>
 	);

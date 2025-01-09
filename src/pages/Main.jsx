@@ -41,6 +41,8 @@ const Main = ({ showPayTables }) => {
 			<Game
 				gameMode={gameMode}
 				hand={hand}
+				holdCards={holdCards}
+				setHoldCards={setHoldCards}
 				displayBar={displayBar}
 				userMessage={userMessage}
 			/>

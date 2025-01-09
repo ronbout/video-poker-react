@@ -2,12 +2,27 @@
 import * as constants from "../assets/constants";
 import CardDisplay from "./CardDisplay";
 
-const CardsSection = ({ gameMode, hand, displayBar }) => {
+const CardsSection = ({
+	gameMode,
+	hand,
+	holdCards,
+	setHoldCards,
+	displayBar,
+}) => {
 	const renderCards = () => {
 		return (
 			<>
 				{hand.map((card, index) => {
-					return <CardDisplay card={card} index={index} key={index} />;
+					return (
+						<CardDisplay
+							gameMode={gameMode}
+							card={card}
+							index={index}
+							key={index}
+							holdCards={holdCards}
+							setHoldCards={setHoldCards}
+						/>
+					);
 				})}
 			</>
 		);
