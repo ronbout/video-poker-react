@@ -104,7 +104,7 @@ export var Deck = function () {
 		_deck[i] = i;
 	}
 
-	this.deal = function (numCards, updateCntFlg) {
+	this.deal = function (numCards = 5, updateCntFlg) {
 		if (numCards > constants.DECK_SIZE - _deckCnt) {
 			return false;
 		}

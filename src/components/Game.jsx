@@ -2,12 +2,12 @@ import CardsSection from "./CardsSection";
 import Message from "./Message";
 import OddsContainer from "./OddsContainer";
 
-const Game = ({ hand }) => {
+const Game = ({ gameMode, hand, displayBar, userMessage }) => {
 	return (
 		<div id="cards-container" className="flex">
 			<OddsContainer />
-			<CardsSection hand={hand} />
-			<Message />
+			<CardsSection gameMode={gameMode} hand={hand} displayBar={displayBar} />
+			<Message userMessage={userMessage} />
 		</div>
 	);
 };

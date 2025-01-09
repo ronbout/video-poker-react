@@ -1,9 +1,5 @@
-const Message = () => {
-	return (
-		<div id="msg">
-			Bet +/- to set Bet amount. &nbsp; &apos;DEAL&apos; to play.
-		</div>
-	);
+const Message = ({ userMessage }) => {
+	return <div id="msg">{userMessage}</div>;
 };
 
 export default Message;
