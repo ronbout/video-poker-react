@@ -3,12 +3,9 @@ import Message from "./Message";
 import OddsContainer from "./OddsContainer";
 
 const Game = ({
-	gameMode,
-	hand,
+	gameState: { gameMode, hand, displayBar, userMessage },
 	holdCards,
 	setHoldCards,
-	displayBar,
-	userMessage,
 }) => {
 	return (
 		<div id="cards-container" className="flex">

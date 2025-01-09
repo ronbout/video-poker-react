@@ -24,8 +24,8 @@ const BetSection = ({ bet, setBet }) => {
 				</div>
 			</div>
 			<div id="bet-change" className="flex">
-				<BetButton bet={bet} setBet={setBet} amt={5} />
 				<BetButton bet={bet} setBet={setBet} amt={-5} />
+				<BetButton bet={bet} setBet={setBet} amt={5} />
 			</div>
 		</div>
 	);

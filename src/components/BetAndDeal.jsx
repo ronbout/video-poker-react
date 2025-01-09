@@ -1,7 +1,7 @@
 import BetSection from "./BetSection";
 import DealSection from "./DealSection";
 
-const BetAndDeal = ({ bet, setBet, gameMode, deal }) => {
+const BetAndDeal = ({ gameState: { gameMode }, bet, setBet, deal }) => {
 	return (
 		<div id="bet-deal-container" className="flex">
 			<BetSection bet={bet} setBet={setBet} />
