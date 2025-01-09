@@ -1,4 +1,4 @@
-export var PayTableClass = function () {
+export let PayTableClass = function () {
 	// the payTable is composed of payouts inside
 	// array(s) with the following layout:
 	// array [ High Card,

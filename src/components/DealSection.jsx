@@ -1,5 +1,5 @@
 import * as constants from "../assets/constants";
-const DealSection = ({ gameMode, deal }) => {
+const DealSection = ({ gameMode, deal, draw }) => {
 	return (
 		<div id="deal-container" className="flex">
 			<div>
@@ -8,7 +8,7 @@ const DealSection = ({ gameMode, deal }) => {
 						Deal
 					</button>
 				) : (
-					<button id="draw-btn" className="btn-yellow btn-large">
+					<button id="draw-btn" className="btn-yellow btn-large" onClick={draw}>
 						Draw
 					</button>
 				)}

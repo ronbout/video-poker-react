@@ -1,4 +1,4 @@
-const credits = () => {
+const credits = ({ bank }) => {
 	return (
 		<div id="credits">
 			<p>
@@ -9,7 +9,7 @@ const credits = () => {
 					name="bank"
 					readOnly="readonly"
 					size="5"
-					value="1000"
+					value={bank}
 				/>
 			</p>
 		</div>

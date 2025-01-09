@@ -1,7 +1,6 @@
 import * as constants from "../assets/constants";
 
 const ChangePay = ({ gameState: { gameMode }, showPayTables }) => {
-	console.log(gameMode);
 	let payClass, onPayClick;
 	if (gameMode === constants.DEAL) {
 		payClass = "";

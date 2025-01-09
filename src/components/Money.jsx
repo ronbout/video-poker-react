@@ -1,9 +1,9 @@
 import ChangePay from "./ChangePay";
 import Credits from "./Credits";
-const Money = ({ gameState, showPayTables }) => {
+const Money = ({ bank, gameState, showPayTables }) => {
 	return (
 		<div id="credits-pay-container" className="flex">
-			<Credits />
+			<Credits bank={bank} />
 			<ChangePay gameState={gameState} showPayTables={showPayTables} />
 		</div>
 	);
