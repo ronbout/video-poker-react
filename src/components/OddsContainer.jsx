@@ -1,13 +1,19 @@
-const OddsContainer = () => {
+import * as constants from "../assets/constants";
+const OddsContainer = ({ gameMode, evVal, calcEV }) => {
 	return (
 		<div id="odds-container" className="flex">
 			<div id="odds-btn">
-				<button id="calc-odds" className="btn-darkgrey" disabled>
+				<button
+					id="calc-odds"
+					className="btn-darkgrey"
+					disabled={gameMode === constants.DEAL}
+					onClick={calcEV}
+				>
 					Calc Odds/EV
 				</button>
 			</div>
 			<div id="odds-results">
-				<input type="text" id="ev" value="0.00" size="10" disabled />
+				<input type="text" id="ev" value={evVal} size="10" disabled />
 			</div>
 			<div id="odds-help-container">
 				<img src="graphics/help-circle.svg" id="odds-help" alt="odds help" />

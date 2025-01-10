@@ -2,26 +2,35 @@ import BetAndDeal from "../components/BetAndDeal";
 import Game from "../components/Game";
 import Money from "../components/Money";
 import * as constants from "../assets/constants";
+import { rlb } from "../assets/rlb-lib";
 import { Deck } from "../assets/Deck";
 import { PokerHand } from "../assets/PokerHand";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Main = ({ showPayTables, curPayTable }) => {
 	const [bank, setBank] = useState(constants.STARTING_BANK);
 	const [bet, setBet] = useState(constants.START_BET);
 	const [holdCards, setHoldCards] = useState([0, 0, 0, 0, 0]);
+	const [evVal, setEvVal] = useState("0.00");
 	const [gameState, setGameState] = useState({
 		gameMode: constants.DEAL,
 		hand: [0, 1, 2, 3, 4],
 		displayBar: constants.DISP_BAR,
 		userMessage: constants.msgs.init,
 	});
+	const curDeck = useRef();
 
-	const curDeck = new Deck();
+	useEffect(() => {
+		if (!curDeck.current) {
+			curDeck.current = new Deck();
+		}
+	}, []);
 	const pokerHand = new PokerHand();
+	new Deck();
 
 	const logHand = (hand) => {
 		hand.forEach((card) => {
+			console.log(card);
 			console.log(Deck.getCardDesc(card));
 		});
 	};
@@ -49,9 +58,48 @@ const Main = ({ showPayTables, curPayTable }) => {
 		return payout;
 	};
 
+	const calcEV = () => {
+		setEvVal("Calc...");
+		let totalPayout = 0;
+		let comboCnt = 0;
+
+		// make array of just hold cards
+		let tmpHoldCards = gameState.hand.filter(function (card, ndx) {
+			return holdCards[ndx];
+		});
+		// create array of combos using nCk
+		let tmpDeck = curDeck.current.deal(47, false);
+		let k = constants.HAND_SIZE - tmpHoldCards.length;
+
+		let comboFn = function (combo) {
+			comboCnt++;
+			if (!(comboCnt % 10000)) {
+				console.log("cnt: " + comboCnt);
+			}
+			let tmpHand = tmpHoldCards.concat(combo);
+			// calc return for this combo
+			let tmpPokerHand = new PokerHand(tmpHand);
+			let handRank = tmpPokerHand.getHandRank();
+			let comboPayout = calcPayout(handRank);
+			totalPayout += comboPayout;
+		};
+
+		//console.log('k: ' + k);
+		/**
+		 * where the combinatorial magic happens
+		 */
+		rlb.nCk(tmpDeck, k, false, comboFn);
+
+		let returnEv = totalPayout / comboCnt;
+		setEvVal(returnEv.toFixed(2));
+	};
+
 	const deal = () => {
-		curDeck.shuffle();
-		const newHand = curDeck.deal();
+		curDeck.current.shuffle();
+		// const tst = curDeck.current.deal(52, false);
+		// console.log("tst: ", tst);
+		const newHand = curDeck.current.deal();
+		// const newHand = [8, 3, 49, 51, 38];
 		setGameState((prev) => ({
 			displayBar: prev.displayBar,
 			gameMode: constants.DRAW,
@@ -59,6 +107,7 @@ const Main = ({ showPayTables, curPayTable }) => {
 			userMessage: constants.msgs.draw,
 		}));
 		setBank((prev) => prev - bet);
+		logHand(newHand);
 	};
 
 	const draw = () => {
@@ -66,7 +115,7 @@ const Main = ({ showPayTables, curPayTable }) => {
 		holdCards.forEach((holdCard, i) => {
 			if (!holdCard) {
 				// replace new card by dealing another off deck
-				const tmpCard = curDeck.deal(1)[0];
+				const tmpCard = curDeck.current.deal(1)[0];
 				newHand[i] = tmpCard;
 			}
 		});
@@ -96,6 +145,7 @@ const Main = ({ showPayTables, curPayTable }) => {
 			gameMode: constants.DEAL,
 			hand: newHand,
 		});
+		setEvVal("0.00");
 	};
 
 	return (
@@ -105,6 +155,8 @@ const Main = ({ showPayTables, curPayTable }) => {
 				gameState={gameState}
 				holdCards={holdCards}
 				setHoldCards={setHoldCards}
+				evVal={evVal}
+				calcEV={calcEV}
 			/>
 			<BetAndDeal
 				gameState={gameState}
