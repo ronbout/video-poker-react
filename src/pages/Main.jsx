@@ -73,9 +73,9 @@ const Main = ({ showPayTables, curPayTable }) => {
 
 		let comboFn = function (combo) {
 			comboCnt++;
-			if (!(comboCnt % 10000)) {
-				console.log("cnt: " + comboCnt);
-			}
+			// if (!(comboCnt % 10000)) {
+			// 	console.log("cnt: " + comboCnt);
+			// }
 			let tmpHand = tmpHoldCards.concat(combo);
 			// calc return for this combo
 			let tmpPokerHand = new PokerHand(tmpHand);
