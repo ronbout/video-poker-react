@@ -1,11 +1,11 @@
-import { PayTableClass } from "./PayTableClass.js";
-export var payTableList = new Array();
+import { PayTableClass } from "./PayTableClass2022.js";
+export let payTableList = new Array();
 
 // Jacks or Better
-var tmpTable = new PayTableClass();
-tmpTable.setId(0);
-tmpTable.setDesc("Jacks or Better");
-tmpTable.setPayTable([
+let tmpTable = new PayTableClass();
+tmpTable.id = 0;
+tmpTable.desc = "Jacks or Better";
+tmpTable.payTable = [
 	0,
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
 	2,
@@ -16,8 +16,8 @@ tmpTable.setPayTable([
 	[25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25],
 	50,
 	800,
-]);
-tmpTable.setDispTable({
+];
+tmpTable.dispTable = {
 	"ROYAL FLUSH": 800,
 	"STRAIGHT FLUSH": 50,
 	"FOUR OF A KIND": 25,
@@ -27,14 +27,14 @@ tmpTable.setDispTable({
 	"THREE OF A KIND": 3,
 	"TWO PAIR": 2,
 	"JACKS OR BETTER": 1,
-});
+};
 payTableList.push(tmpTable);
 
 // Bonus Poker
 tmpTable = new PayTableClass();
-tmpTable.setId(1);
-tmpTable.setDesc("Bonus Poker");
-tmpTable.setPayTable([
+tmpTable.id = 1;
+tmpTable.desc = "Bonus Poker";
+tmpTable.payTable = [
 	0,
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
 	2,
@@ -45,8 +45,8 @@ tmpTable.setPayTable([
 	[40, 40, 40, 25, 25, 25, 25, 25, 25, 25, 25, 25, 80],
 	50,
 	800,
-]);
-tmpTable.setDispTable({
+];
+tmpTable.dispTable = {
 	"ROYAL FLUSH": 800,
 	"STRAIGHT FLUSH": 50,
 	"FOUR OF A KIND (Aces)": 80,
@@ -58,14 +58,14 @@ tmpTable.setDispTable({
 	"THREE OF A KIND": 3,
 	"TWO PAIR": 2,
 	"JACKS OR BETTER": 1,
-});
+};
 payTableList.push(tmpTable);
 
 //  Double Bonus Poker
 tmpTable = new PayTableClass();
-tmpTable.setId(2);
-tmpTable.setDesc("Double Bonus Poker");
-tmpTable.setPayTable([
+tmpTable.id = 2;
+tmpTable.desc = "Double Bonus Poker";
+tmpTable.payTable = [
 	0,
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
 	1,
@@ -76,8 +76,8 @@ tmpTable.setPayTable([
 	[80, 80, 80, 50, 50, 50, 50, 50, 50, 50, 50, 50, 80],
 	50,
 	800,
-]);
-tmpTable.setDispTable({
+];
+tmpTable.dispTable = {
 	"ROYAL FLUSH": 800,
 	"STRAIGHT FLUSH": 50,
 	"FOUR OF A KIND (Aces)": 80,
@@ -89,14 +89,14 @@ tmpTable.setDispTable({
 	"THREE OF A KIND": 3,
 	"TWO PAIR": 1,
 	"JACKS OR BETTER": 1,
-});
+};
 payTableList.push(tmpTable);
 
 // Aces Bonus Poker
 tmpTable = new PayTableClass();
-tmpTable.setId(3);
-tmpTable.setDesc("Aces Bonus Poker");
-tmpTable.setPayTable([
+tmpTable.id = 3;
+tmpTable.desc = "Aces Bonus Poker";
+tmpTable.payTable = [
 	0,
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
 	1,
@@ -107,8 +107,8 @@ tmpTable.setPayTable([
 	[80, 80, 80, 50, 50, 50, 50, 50, 50, 50, 50, 50, 400],
 	60,
 	800,
-]);
-tmpTable.setDispTable({
+];
+tmpTable.dispTable = {
 	"ROYAL FLUSH": 800,
 	"STRAIGHT FLUSH": 60,
 	"FOUR OF A KIND (Aces)": 400,
@@ -120,14 +120,14 @@ tmpTable.setDispTable({
 	"THREE OF A KIND": 3,
 	"TWO PAIR": 1,
 	"JACKS OR BETTER": 1,
-});
+};
 payTableList.push(tmpTable);
 
 // Triple Bonus Poker
 tmpTable = new PayTableClass();
-tmpTable.setId(4);
-tmpTable.setDesc("Triple Bonus Poker");
-tmpTable.setPayTable([
+tmpTable.id = 4;
+tmpTable.desc = "Triple Bonus Poker";
+tmpTable.payTable = [
 	0,
 	[0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
 	1,
@@ -138,8 +138,8 @@ tmpTable.setPayTable([
 	[120, 120, 120, 50, 50, 50, 50, 50, 50, 50, 50, 50, 240],
 	100,
 	800,
-]);
-tmpTable.setDispTable({
+];
+tmpTable.dispTable = {
 	"ROYAL FLUSH": 800,
 	"STRAIGHT FLUSH": 100,
 	"FOUR OF A KIND (Aces)": 240,
@@ -151,5 +151,5 @@ tmpTable.setDispTable({
 	"THREE OF A KIND": 3,
 	"TWO PAIR": 1,
 	"JACKS OR BETTER": 1,
-});
+};
 payTableList.push(tmpTable);

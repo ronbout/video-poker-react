@@ -41,21 +41,19 @@ const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 		return payTableList.map((paytable) => (
 			<h3
 				className={
-					paytable.getId() === curPayTableID
-						? "paytable-selected"
-						: "paytable-item"
+					paytable.id === curPayTableID ? "paytable-selected" : "paytable-item"
 				}
-				id={`pay-${paytable.getId() + 1}`}
-				key={paytable.getId()}
-				onClick={() => handleChangePaytable(paytable.getId())}
+				id={`pay-${paytable.id + 1}`}
+				key={paytable.id}
+				onClick={() => handleChangePaytable(paytable.id)}
 			>
-				{paytable.getDesc()}
+				{paytable.desc}
 			</h3>
 		));
 	};
 
 	const renderPayTableAmounts = () => {
-		const payAmountList = payTableList[curPayTableID].getDispTable();
+		const payAmountList = payTableList[curPayTableID].dispTable;
 		const payAmountArray = Object.keys(payAmountList);
 		// console.log(payAmountArray);
 		return payAmountArray.map((payType) => (
@@ -72,7 +70,7 @@ const PaytablePage = ({ showGame, setPayTableID, payTableID }) => {
 				<div className="paytable-list">{renderPayTableNames()}</div>
 				<div className="paydesc">
 					<h2 style={{ textAlign: "center" }}>
-						<span>{payTableList[curPayTableID].getDesc()} Payouts</span>
+						<span>{payTableList[curPayTableID].desc} Payouts</span>
 					</h2>
 					<table className="paytable" style={{ paddingTop: "10px" }}>
 						<thead>

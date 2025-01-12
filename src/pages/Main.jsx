@@ -3,8 +3,8 @@ import Game from "../components/Game";
 import Money from "../components/Money";
 import * as constants from "../assets/constants";
 import { rlb } from "../assets/rlb-lib";
-import { Deck } from "../assets/Deck";
-import { PokerHand } from "../assets/PokerHand";
+import { Deck } from "../assets/Deck2022";
+import { PokerHand } from "../assets/PokerHand2022";
 import { useEffect, useRef, useState } from "react";
 
 const Main = ({ showPayTables, curPayTable }) => {
@@ -37,7 +37,7 @@ const Main = ({ showPayTables, curPayTable }) => {
 
 	const calcPayout = (handRank) => {
 		let payout;
-		let payStructure = curPayTable.getPayTable();
+		let payStructure = curPayTable.payTable;
 
 		switch (handRank[5]) {
 			case constants.HIGH_CARD:
@@ -79,7 +79,7 @@ const Main = ({ showPayTables, curPayTable }) => {
 			let tmpHand = tmpHoldCards.concat(combo);
 			// calc return for this combo
 			let tmpPokerHand = new PokerHand(tmpHand);
-			let handRank = tmpPokerHand.getHandRank();
+			let handRank = tmpPokerHand.handRank;
 			let comboPayout = calcPayout(handRank);
 			totalPayout += comboPayout;
 		};
@@ -124,8 +124,8 @@ const Main = ({ showPayTables, curPayTable }) => {
 		// evaluate hand
 		console.log("hand: ", newHand);
 		logHand(newHand);
-		pokerHand.setHand(newHand);
-		const handRank = pokerHand.getHandRank();
+		pokerHand.hand = newHand;
+		const handRank = pokerHand.handRank;
 		console.log("hand rank: ", handRank);
 		const payout = calcPayout(handRank);
 		console.log("payout: ", payout);

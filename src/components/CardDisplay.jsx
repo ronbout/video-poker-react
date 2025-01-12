@@ -1,5 +1,5 @@
 import * as constants from "../assets/constants";
-import { Deck } from "../assets/Deck";
+import { Deck } from "../assets/Deck2022.js";
 
 const CardDisplay = ({ gameMode, card, index, holdCards, setHoldCards }) => {
 	const handleCardClick = () => {

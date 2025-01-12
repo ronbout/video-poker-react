@@ -21,7 +21,7 @@ function App() {
 
 	return (
 		<div>
-			<Layout payTableTitle={curPayTable.getDesc()}>
+			<Layout payTableTitle={curPayTable.desc}>
 				{"game" === pageDisplay ? (
 					<Main
 						showPayTables={() => setPageDisplay("paytable")}
