@@ -7,8 +7,7 @@ import { Deck } from "../assets/Deck2022";
 import { PokerHand } from "../assets/PokerHand2022";
 import { useEffect, useRef, useState } from "react";
 
-const Main = ({ showPayTables, curPayTable }) => {
-	const [bank, setBank] = useState(constants.STARTING_BANK);
+const Main = ({ showPayTables, curPayTable, bank, setBank }) => {
 	const [bet, setBet] = useState(constants.START_BET);
 	const [holdCards, setHoldCards] = useState([0, 0, 0, 0, 0]);
 	const [evVal, setEvVal] = useState("0.00");
