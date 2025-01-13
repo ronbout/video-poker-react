@@ -6,11 +6,13 @@ import { rlb } from "../assets/rlb-lib";
 import { Deck } from "../assets/Deck2022";
 import { PokerHand } from "../assets/PokerHand2022";
 import { useEffect, useRef, useState } from "react";
+import Modal from "../components/Modal";
 
 const Main = ({ showPayTables, curPayTable, bank, setBank }) => {
 	const [bet, setBet] = useState(constants.START_BET);
 	const [holdCards, setHoldCards] = useState([0, 0, 0, 0, 0]);
 	const [evVal, setEvVal] = useState("0.00");
+	const [showModal, setShowModal] = useState(false);
 	const [gameState, setGameState] = useState({
 		gameMode: constants.DEAL,
 		hand: [0, 1, 2, 3, 4],
@@ -148,23 +150,37 @@ const Main = ({ showPayTables, curPayTable, bank, setBank }) => {
 	};
 
 	return (
-		<main id="game-container">
-			<Money bank={bank} gameState={gameState} showPayTables={showPayTables} />
-			<Game
-				gameState={gameState}
-				holdCards={holdCards}
-				setHoldCards={setHoldCards}
-				evVal={evVal}
-				calcEV={calcEV}
+		<>
+			<main id="game-container">
+				<Money
+					bank={bank}
+					gameState={gameState}
+					showPayTables={showPayTables}
+				/>
+				<Game
+					gameState={gameState}
+					holdCards={holdCards}
+					setHoldCards={setHoldCards}
+					evVal={evVal}
+					calcEV={calcEV}
+					showOddsHelp={() => setShowModal(true)}
+				/>
+				<BetAndDeal
+					gameState={gameState}
+					bet={bet}
+					setBet={setBet}
+					deal={deal}
+					draw={draw}
+				/>
+			</main>
+			<Modal
+				msg={constants.msgs.odds
+					.replace(/\nNote/g, "<br><br>Note")
+					.replace(/\n/g, "")}
+				showModal={showModal}
+				closeModal={() => setShowModal(false)}
 			/>
-			<BetAndDeal
-				gameState={gameState}
-				bet={bet}
-				setBet={setBet}
-				deal={deal}
-				draw={draw}
-			/>
-		</main>
+		</>
 	);
 };
 

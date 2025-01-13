@@ -8,10 +8,16 @@ const Game = ({
 	setHoldCards,
 	evVal,
 	calcEV,
+	showOddsHelp,
 }) => {
 	return (
 		<div id="cards-container" className="flex">
-			<OddsContainer gameMode={gameMode} evVal={evVal} calcEV={calcEV} />
+			<OddsContainer
+				gameMode={gameMode}
+				evVal={evVal}
+				calcEV={calcEV}
+				showOddsHelp={showOddsHelp}
+			/>
 			<CardsSection
 				gameMode={gameMode}
 				hand={hand}
