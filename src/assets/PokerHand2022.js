@@ -167,8 +167,8 @@ export class PokerHand {
 					tmp = this.#sortedHand[0];
 					this.#sortedHand[0] = this.#sortedHand[3];
 					this.#sortedHand[3] = tmp;
-					/* fix bug with original code comparing ranks, which is always !== as it wasn't swapped */
-					if (this.#sortedHand[0] !== this.#sortedHand[1]) {
+					/* fix bug with original code comparing ranks, should be 3 == 4 */
+					if (ranks[3] !== ranks[4]) {
 						tmp = this.#sortedHand[1];
 						this.#sortedHand[1] = this.#sortedHand[4];
 						this.#sortedHand[4] = tmp;
